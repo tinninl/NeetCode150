@@ -5,10 +5,10 @@ public class GroupAnagrams {
     
     public List<List<String>> groupAnagrams(String[] strs) {
 
-        ArrayList<ArrayList<String>> result = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
         ArrayList<String> anagrams = new ArrayList<>();
 
-        for (int)
+        return result;
 
     }
 
