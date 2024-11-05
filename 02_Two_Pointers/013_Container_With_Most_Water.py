@@ -1,22 +1,22 @@
 def maxArea(self, height: List[int]) -> int:
     
-    l = 0 
-    r = len(height) - 1
+    l, r = 0, len(height) - 1
     
-    w = 0
-    h = 0
-    area = 0
+    w, h, a = 0, 0, 0 # width, height, area
     
     maxArea = 0
     
     while l < r:
         
+        # Calculate area
         w = r - l
         h = min(height[l], height[r])
         area = h * w
         
+        # Check and update maxArea
         maxArea = max(area, maxArea)
         
+        # Update pointers
         if (height[l] < height[r]):
             l += 1
             

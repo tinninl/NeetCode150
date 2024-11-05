@@ -13,6 +13,6 @@ def twoSum2(nums: list[int], target: int) -> list[int]:
             r -= 1
             
         else:
-            return [l + 1, r + 1]
+            return [l + 1, r + 1] # question states array is 1-indexed, so we must add 1
         
     return [-1,-1]

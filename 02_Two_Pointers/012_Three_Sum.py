@@ -1,3 +1,6 @@
+"""
+Look at the negative numbers only, and find two numbers that sum to it
+"""
 def threeSum(nums: list[int], target: int) -> list[list[int]]:
     
     res = []
@@ -6,10 +9,10 @@ def threeSum(nums: list[int], target: int) -> list[list[int]]:
     
     for i, n in enumerate(nums):
         
-        if (n > 0):
+        if (n > 0): # skip positive values
             break
         
-        if (i > 0 and n == nums[i - 1]):
+        if (i > 0 and n == nums[i - 1]):    # skip duplicate values
             continue
         
         l, r = i + 1, len(nums) - 1
@@ -31,7 +34,7 @@ def threeSum(nums: list[int], target: int) -> list[list[int]]:
                 l += 1
                 r -= 1
                 
-                while nums[l] == nums[l - 1] and l < r:
+                while l < r and nums[l] == nums[l - 1] : # skip duplicate solutions
                     l += 1
     
     return res

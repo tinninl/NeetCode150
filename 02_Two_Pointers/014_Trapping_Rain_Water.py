@@ -10,7 +10,7 @@ def trap(height: list[int]) -> int:
         
         if (maxLeft < maxRight):
             
-            area = max(maxLeft - height[l], 0)
+            area = maxLeft - height[l]
             
             maxLeft = max(maxLeft, height[l])
             
@@ -18,12 +18,13 @@ def trap(height: list[int]) -> int:
             
         else:
             
-            area = max(maxRight - height[r], 0)
+            area = maxRight - height[r]
             
             maxRight = max(maxRight, height[r])
             
             r -= 1
             
-        totalArea += area
+        if area > 0:
+            totalArea += area
         
     return totalArea

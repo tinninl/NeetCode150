@@ -3,18 +3,18 @@ def maxProfit(self, prices: List[int]) -> int:
     maxProfit = 0
     profit = 0
     
-    l = 0
-    r = 1
+    buy = 0 # buy date
+    sell = 1 # sell date
     
-    while (r < len(prices)):
+    while (sell < len(prices)):
         
-        if (prices[r] < prices[l]):
-            l = r
+        if (prices[sell] < prices[buy]):
+            buy = sell
             
         else:
-            profit = prices[r] - prices[l]
+            profit = prices[sell] - prices[buy]
             maxProfit = max(profit, maxProfit)
             
-        r += 1
+        sell += 1
         
     return maxProfit
