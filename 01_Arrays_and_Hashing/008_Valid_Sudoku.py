@@ -15,7 +15,7 @@ def isValidSudoku(board: list[list[str]]) -> bool:
             
             s = board[i][j]
             
-            if (s != ","):            
+            if (s != "."):            
                 if s in rowSet:
                     return False
                 else:
@@ -23,7 +23,7 @@ def isValidSudoku(board: list[list[str]]) -> bool:
                 
             s = board[j][i]
             
-            if s != ",":
+            if s != ".":
                 
             
                 if s in colSet:
@@ -33,7 +33,7 @@ def isValidSudoku(board: list[list[str]]) -> bool:
                     
             s = board[((i // 3) * 3) + (j // 3)][(j % 3) + ((i % 3) * 3)]
             
-            if s != ",":
+            if s != ".":
                 
             
                 if s in blockSet:

@@ -1,4 +1,4 @@
-def sub(s: str) -> int:
+def lengthOfLongestSubstring(s: str) -> int:
 
     charSet = set()
     

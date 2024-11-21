@@ -29,7 +29,7 @@ def threeSum(nums: list[int], target: int) -> list[list[int]]:
                 
             else:
                 
-                res.append[n, nums[l], nums[r]]
+                res.append([n, nums[l], nums[r]])
                 
                 l += 1
                 r -= 1

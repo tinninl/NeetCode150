@@ -2,7 +2,7 @@ def maxArea(self, height: List[int]) -> int:
     
     l, r = 0, len(height) - 1
     
-    w, h, a = 0, 0, 0 # width, height, area
+    w, h, area = 0, 0, 0 # width, height, area
     
     maxArea = 0
     

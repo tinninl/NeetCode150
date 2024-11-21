@@ -14,7 +14,7 @@ def minWindow(s: str, t: str) -> str:
     matches = 0
     target = len(countT)
     l = 0
-    resLen = 10000
+    resLen = len(t) + 1
     
     for r in range(len(s)):
         
