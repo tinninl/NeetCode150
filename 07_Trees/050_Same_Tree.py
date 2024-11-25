@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class TreeNode:
      def __init__(self, val=0, left=None, right=None):
          self.val = val
@@ -15,7 +18,7 @@ def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         return False
     
     # values equal? we already checked that both nodes are not null
-    if p.val != q.val:
+    elif p.val != q.val:
         return False
     
     # are the children matching?

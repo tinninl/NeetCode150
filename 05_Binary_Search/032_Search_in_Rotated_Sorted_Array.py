@@ -4,7 +4,7 @@ def search(nums: list[int], target: int) -> int:
     
     while l <= r:
         
-        m = l + ((r - l) // 2)
+        m = (l + r) // 2
         
         if nums[m] == target:
             return m

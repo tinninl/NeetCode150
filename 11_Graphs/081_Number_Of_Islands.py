@@ -5,15 +5,16 @@ class Solution:
         if not grid:
             return 0
         
-        rows = len(grid)
-        cols = len(grid[0])
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        
         numIslands = 0
         
         # Check every square for an island
         
-        for r in range(rows):
+        for r in range(ROWS):
             
-            for c in range(cols):
+            for c in range(COLS):
                 
                 if grid[r][c] == "1":
                     

@@ -13,6 +13,7 @@ def dfsHeight(root: TreeNode):
     left = dfsHeight(root.left)
     right = dfsHeight(root.right)
     
+    # If left or right subtree is not balanced, the entire tree is not balanced
     if (left == -1) or (right == -1):
         return -1
     

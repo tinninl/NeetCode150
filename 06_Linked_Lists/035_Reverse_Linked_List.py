@@ -3,28 +3,26 @@ class ListNode:
         self.val = val
         self.next = next
         
-def reverseList(head:ListNode) -> ListNode:
+class Solution:        
     
-    if not head: # empty list
-        return None
+    def reverseList(head:ListNode) -> ListNode:
 
-    prev = None
-    curr = head
-    next
+        # Empty list
+        if not head: 
+            return None
+
+        # Need to track previous and current nodes
+        prev = None
+        curr = head
+
+        while curr:
+
+            temp = curr.next # Also need a temp variable to help us swap references
+            curr.next = prev
+            prev = curr
+            curr = temp
+
+        return prev
     
-    while curr:
-        
-        next = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next
-        
-    return prev
-        
-"""
-A B C
-curr = A prev = None next = B
-A must point to null, B must point to A
-curr must point to B
-prev must point to A
-"""
+        # At the end of iterating, curr should point to null, prev should point to the tail
+

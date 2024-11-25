@@ -1,6 +1,6 @@
 def remove(head: ListNode, n: int) -> None:
     
-    if not head.next: # In case list has exactly one element
+    if not head or not head.next: # In case list has exactly one element
         return None
     
     left = head

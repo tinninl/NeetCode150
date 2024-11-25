@@ -5,6 +5,7 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     ROWS = len(matrix)
     COLS = len(matrix[0])
     
+    # start at the bottom left (or top right)
     r = ROWS - 1
     c = 0
     

@@ -2,6 +2,7 @@ def binarySearch(nums: list[int], target: int) -> int:
     
     l, r = 0, len(nums) - 1
     
+    # why l <= r instead of l < r? consider an array of size 1
     while l <= r:
         
         #mid = l + ((r - 1) // 2) find half the distance btwn r and l, add it to l, avoid overflow
@@ -17,6 +18,3 @@ def binarySearch(nums: list[int], target: int) -> int:
             return mid
         
     return -1
-
-nums = [4]
-print(binarySearch(nums,4))

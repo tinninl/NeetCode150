@@ -7,22 +7,19 @@ def search(nums: list[int]) -> int:
     
     while l <= r:
         
-        if nums[l] <= nums[r]: # <= in case search array is size = 1 (l = r)
+        # If we found the sorted part
+        if nums[l] <= nums[r]:
             res = nums[l]
             break
         
+    
         m = (l + r) // 2
-        print("left:", l, " right:", r, "mid:", m)
         
-        if nums[m] < nums[r]: # mid element could be solution, include it
+        if nums[m] < nums[r]: # mid element could be solution, include it in next search space
             r = m
             
-        else:   # mid element cannot be solution, exclude it
+        else:   # mid element cannot be solution, exclude it ( + 1)
             l = m + 1
             
-    return res
-        
-nums = [3,4,0,1,2]
-
-print(search(nums))      
+    return res    
             

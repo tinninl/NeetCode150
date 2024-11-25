@@ -5,7 +5,9 @@ def solution(root: TreeNode, k: int) -> int:
     stack = []
     
     while curr and stack:
+        
         while curr:
+            
             stack.append(curr)
             curr = curr.left
             

@@ -32,13 +32,10 @@ def dailyTemp(temperatures: list[int]) -> list[int]:
     
     for i, t in enumerate(temperatures): # index = day, t = temp
         
-        while stack and t > stack[-1][0]:
-            prevDay = stack.pop()[1]
-            res[prevDay] = i - prevDay
+        while stack and t > stack[-1][0]: # stack[-1][0] = peek temp
+            prevDay = stack.pop()[1] # get the day
+            res[prevDay] = i - prevDay # store the difference in days
             
         stack.append([t, i])
         
     return res
-
-temperatures = [73,74,75,71,69,72,76,73]
-print(dailyTemp(temperatures))
