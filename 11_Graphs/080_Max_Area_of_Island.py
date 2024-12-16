@@ -11,6 +11,10 @@ class Solution:
         ROWS = len(grid)
         COLS = len(grid[0])
         
+        """
+        Search the grid for land squares.
+        If we find a land square, perform dfs to find all adjacent land squares
+        """
         for r in range(ROWS):
             
             for c in range(COLS):
@@ -20,7 +24,8 @@ class Solution:
                     maxArea = max(maxArea, area)
                     
         return maxArea
-                    
+    
+    # Returns size of island       
     def dfs(self, grid, r, c) -> int:
             
         # Check bounds

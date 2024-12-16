@@ -2,7 +2,7 @@ class Solution:
     def numIslands(self, grid: list[list[str]]) -> int:
         
         # Base case: empty grid
-        if not grid:
+        if not grid or len(grid) == 0:
             return 0
         
         ROWS = len(grid)

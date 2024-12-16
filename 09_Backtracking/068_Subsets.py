@@ -1,5 +1,5 @@
 class Solution:
-    def subsets(nums: list[int]) -> list[list[int]]:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
         
         res = []
         subset = []

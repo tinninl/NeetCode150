@@ -11,13 +11,13 @@ class Solution:
         def dfs(r: int, c: int):
 
             # Check bounds
-            if r < 0 or c < 0 or r >= ROWS or c >= COLS:
+            if (r < 0) or (c < 0) or (r >= ROWS) or (c >= COLS):
                 return
             
             elif board[r][c] == 'X' or board == 'S':
                 return
             
-            else:
+            else: # square is 'O'
                 
                 board[r][c] == 'S' # Mark visited 'O' as 'S' 
                 
@@ -28,7 +28,7 @@ class Solution:
         
         # Start from the top and bottom rows    
         for r in range(ROWS):
-            dfs(r,0)
+            dfs(r, 0)
             dfs(r, COLS -1)
         
         # and the leftmost and rightmost columns
@@ -47,3 +47,8 @@ class Solution:
                 # Turn back the safe regions
                 elif board[r][c] == 'S':
                     board[r][c] == 'O'
+                    
+"""
+We only care about regions that touch the edges.
+Therefore, only run dfs on the edges
+"""

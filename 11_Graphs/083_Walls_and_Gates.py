@@ -7,10 +7,13 @@ def wallsAndGates(self, rooms: list[list[int]]) -> None:
     q = deque()
     
     def addRoom(r, c):
+        
         if r < 0 or c < 0 or r == ROWS or c == COLS:
             return
+        
         if (r, c) in visit or rooms[r][c] == -1:
             return
+        
         visit.add((r,c))
         q.append([r,c])
     
@@ -28,12 +31,16 @@ def wallsAndGates(self, rooms: list[list[int]]) -> None:
     while q:
         
         for i in range(len(q)):
+            
             r, c = q.popleft()
+            
             rooms[r][c] = dist
+            
             addRoom(r + 1, c)
             addRoom(r - 1, c)
             addRoom(r, c + 1)
             addRoom(r, c - 1)
+            
             dist += 1
                 
                 
