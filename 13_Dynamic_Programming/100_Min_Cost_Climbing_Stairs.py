@@ -37,14 +37,18 @@ Constraints:
 class Solution:
     
     def minCostClimbingStairs(self, cost: list[int]) -> int:
-        
-        # Start from the third last, go backwards 
+    
+        # Start from the third last, go backwards to 0
         for i in range(len(cost) - 3, -1, -1):
             
             cost[i] += min(cost[i + 1], cost[i + 2])
             
-        return min(cost[0],cost[1])
-        
+        return min(cost[0], cost[1])
+
+    """
+    change cost array so that cost[i] = the cost to reach the end from step i
+    since we start from step 0 or step 1, pick the lower cost as the answer
+    """        
         
         
         

@@ -40,7 +40,16 @@ class Solution:
         cache[2] = 2
         
         for i in range(3, n + 1):
+            
             cache[i] = cache[i - 1] + cache[i - 2]
             
         return cache[-1]
+    
+"""
+Notes:
+fib seq starting at 1 and 2
+use cache
+return last step
+dp: use the prev results to calculate the next result
+"""
             
