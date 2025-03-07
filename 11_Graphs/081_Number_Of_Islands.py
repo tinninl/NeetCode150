@@ -23,7 +23,7 @@ class Solution:
         
         return numIslands
     
-    def dfs(self, grid: list[list[int]], r: int, c: c):
+    def dfs(self, grid: list[list[int]], r: int, c: int):
         
         # If out of bounds, end
         if (r < 0) or (c < 0) or (r >= len(grid)) or (c >= len(grid[0])):
