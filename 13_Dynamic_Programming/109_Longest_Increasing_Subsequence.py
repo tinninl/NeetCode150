@@ -1,5 +1,5 @@
 """
-300 Longest Increaing Subsequence
+300 Longest Increasing Subsequence
 
 Given an integer array nums, return the length of the longest strictly increasing subsequence.
 
@@ -37,19 +37,20 @@ class Solution:
     def lengthOfLIS(self, nums: list[int]) -> int:
         
         n = len(nums)
-        
-        if n <= 1:
-            return n
-        
+
+        # Base case: The LIS = 1
         LIS = [1] * n
         
-        for i in range(n - 1, -1, -1):
+        for i in range(1, n):
             
-            for j in range(i + 1, n):
+            # Consider all subproblems
+            for j in range(i):
                 
-                if nums[i] < nums[j]:
+                # Only consider subproblems where the prev element is less than curr element
+                if nums[j] < nums[i]:
                     
-                   LIS[i] = max(LIS[i], 1 + LIS[j])
-                   
+                    # Update LIS
+                    LIS[i] = max(LIS[i], LIS[j] + 1)
+                           
         return max(LIS)
-                
+        
