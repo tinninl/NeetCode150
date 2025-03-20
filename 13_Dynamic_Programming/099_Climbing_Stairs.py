@@ -29,27 +29,56 @@ Constraints:
 
 class Solution:
     
-    def climbStairs(self, n: int) -> int:
-        
-        if n <= 2:
-            return n 
-        
-        cache = [0] * (n + 1)
-        
-        cache[1] = 1
-        cache[2] = 2
-        
-        for i in range(3, n + 1):
-            
-            cache[i] = cache[i - 1] + cache[i - 2]
-            
-        return cache[-1]
+    """
+    Step 1: What is the subproblem?
+    To know the answer for 6 stairs, 
+    we want to know the answer for 5 and 4 stairs.
     
-"""
-Notes:
-fib seq starting at 1 and 2
-use cache
-return last step
-dp: use the prev results to calculate the next result
-"""
+    Step 2: What is the state?
+    dp[n] = number of ways to climb to n steps
+    
+    Step 3: What is the recurrence relation?
+    dp[n] = dp[n-1] + dp[n-2], just like fib seq
+    
+    Step 4: Base cases: 0 or 1 steps
+    """
+    
+    def climbStairsMemo(self, n: int) -> int:
+        
+        dp = [0] * (n + 1)
+        
+        # Base cases
+        dp[0] = 1
+        dp[1] = 1
+        
+        def dfs(i):
+            
+            # We have reached a base case
+            if i <= 1:
+                return dp[i]
+            
+            # We have reached a previously stored calculation
+            if dp[i] != 0:
+                return dp[i]
+            
+            # Work backwards recursively
+            dp[i] = dfs(i - 1) + dfs(i - 2)
+            
+            return dp[i]
+        
+        return dfs(n - 1)
+    
+    def climbStairsTab(self, n: int) -> int:
+        
+        dp = [0] * (n + 1)
+        
+        dp[0] = 0
+        dp[1] = 1
+        
+        for i in range(2, len(dp)):
+            dp[i] = dp[i - 1] + dp[i - 2]
+        
+        return dp[n]
+    
+
             

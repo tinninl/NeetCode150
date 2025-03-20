@@ -45,18 +45,18 @@ class Solution:
     def change(self, amount: int, coins: list[int]) -> int:
         
         n = len(coins)
-        coins.sort()
-        # Create a maxtrix of n + 1 rows by amount + 1 columns
+        # Create a maxtrix of n + 1 rows (y-axis) by amount + 1 columns (x-axis)
         dp = [[0] * (amount + 1) for _ in range(n + 1)]
         
-        
+        ROWS = len(dp)
+        COLS = len(dp[0]) 
         
         # Base case: There is only one way to make 0
-        for i in range(n + 1):
+        for i in range(ROWS):
             dp[i][0] = 1
             
-            for i in range(1, n + 1):  # Start from 1 to avoid index error
-                for j in range(amount + 1):
+            for i in range(1, ROWS):  # Start from 1 to avoid index error
+                for j in range(COLS):
                     # Don't use the coin
                     dp[i][j] = dp[i - 1][j]
                     # Use the coin if it's <= current amount
