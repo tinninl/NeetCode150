@@ -1,9 +1,7 @@
 """
-ou are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps.
 
-You can either start from the step with index 0, or the step with index 1.
-
-Return the minimum cost to reach the top of the floor.
+Same as Climbing Stairs but this time there is a cost associated with every step.
+Find the minimum cost to reach the top.
 
  
 
@@ -35,20 +33,58 @@ Constraints:
 """
 
 class Solution:
-    
-    def minCostClimbingStairs(self, cost: list[int]) -> int:
-    
-        # Start from the third last, go backwards to 0
-        for i in range(len(cost) - 3, -1, -1):
-            
-            cost[i] += min(cost[i + 1], cost[i + 2])
-            
-        return min(cost[0], cost[1])
-
     """
-    change cost array so that cost[i] = the cost to reach the end from step i
-    since we start from step 0 or step 1, pick the lower cost as the answer
-    """        
+    Step One: What is the subproblem?
+    Similar to Climbing Stairs, the subproblem of step[n] is step[n - 1] and step[n - 2]
+    
+    Step Two: What is the state?
+    Only one state, dp[i] = min cost to reach step i
+    
+    Step Three: What is the recurrence relation?
+    step[n] = min(step[n - 1], step[n - 2]) + cost[n]
+    
+    Step Four: What is the base case?
+    We always need to start on step[0] or step[1]
+    
+    """
+    def minCostClimbingStairsMemo(self, cost: list[int]) -> int:
+        
+        n = len(cost)
+    
+        dp = [-1] * n
+        
+        def dfs(i):
+            
+            # Base cases
+            if (i == 0) or (i == 0):
+                return cost[i]
+            
+            # We reach a previously stored calculation
+            if dp[i] != -1:
+                return dp[i]
+            
+            dp[i] = min(dfs(i - 1), dfs(i - 2)) + cost[i]
+            
+            return dp[i]
+        
+        return dfs(n)
+    
+    def minCostClimbingStairsTab(self, cost: list[int]) -> int:
+        
+        n = len(cost)
+        
+        dp = [-1] * n
+        
+        dp[0], dp[1] = cost[0], cost[1]
+        
+        for i in range(2, n):
+            
+            dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
+            
+        return min(dp[n - 1], dp[n - 2])
+                                            
+
+    
         
         
         
