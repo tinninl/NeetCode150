@@ -1,30 +1,37 @@
-def countPalindromes(s: str) -> int:
+"""
+Nearly identical to Longest Palindromic Substring, in fact its easier.
+Instead of tracking starting index and length of longest pali,
+just track number of palis. Only changes made are to return stmnt and tracking variables.
+"""
+class Solution:
     
-    n = len(s)
-    
-    if n <= 1:
-        return n
-    
-    res = 0
-    
-    def isPali(l, r):
+    def countSubstrings(self, s: str) -> int:
         
-        while l < r:
+        n = len(s)
+        
+        if n <= 1:
+            return s
+        
+        res = 0
+        
+        for i in range(n):
             
-            if s[l] != s[r]:
-                return False
+            # Handle odd palidromes
+            l, r = i, i 
             
-            else:
-                l += 1
-                r -= 1
+            while ((l >= 0) and (r < n) and (s[l] == s[r])):
                 
-        return True
-    
-    for i in range(n):
-        
-        for j in range(i, n):
-            
-            if isPali(i, j):
                 res += 1
-        
-    return res
+                l -= 1
+                r += 1
+                
+            # Handle even palindromes (r = i + 1 is the only difference)
+            l, r = i, i + 1
+            
+            while ((l >= 0) and (r < n) and (s[l] == s[r])):
+              
+                res += 1   
+                l -= 1
+                r += 1
+                
+        return res

@@ -1,44 +1,75 @@
-def longestPalindrome(s: str) -> str:
-    
-    n = len(s)
-    
-    if n <= 1:
-        return s
+"""
+5. Longest Palindromic Substring
 
-    longest = 0
-    start = 0
-    length = 0
+Given a string s, return the longest palindromic substring in s.
+
+Example 1:
+
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+Example 2:
+
+Input: s = "cbbd"
+Output: "bb"
+ 
+Constraints:
+
+1 <= s.length <= 1000
+s consist of only digits and English letters.
+"""
+
+"""
+Step One: What is the subproblem?
+'ababa' is a palindrome if 'bab' is a palindrome, s[i:j] depends on s[i+1:j-1]
+
+Step Two: What is the state?
+dp[i][j] = True means its a palindrome from i to j
+
+Step Three: What is the recurrence relation?
+dp[i][j] = s[i] == s[j] and dp[i-1][j+1]
+
+Step Four:
+One letter substrings are palindromes
+Two letter substrings MAY be palindromes
+"""
+class Solution:
     
-    for m in range(n):
+    def longestPalindrome(self, s: str) -> str:
         
-        length = 1
+        n = len(s)
         
-        l = m - 1      
-        r = m + 1        
-           
-        while l >= 0 and s[l] == s[m]:
-            length += 1
-            l -= 1
-                 
-        while r < n and s[r] == s[m]:
-            length += 1
-            r += 1
+        if n <= 1:
+            return s
         
-        while (l >= 0) and (r < n) and s[l] == s[r]:
-                
-                length += 2
+        start = 0
+        maxLength = 0
+        
+        for i in range(n):
+            
+            # Handle odd palidromes
+            l, r = i, i 
+            
+            while ((l >= 0) and (r < n) and (s[l] == s[r])):
+                length = r - l + 1
+                if length > maxLength:
+                    maxLength = length
+                    start = l
+                    
                 l -= 1
                 r += 1
-        
-        if length > longest:
-            longest = length
-            start = l + 1
-
-    
-    print('start = ', start)
-    print('longest = ', longest)
-    return s[start: start + longest]
-        
-s = 'babad'
                 
-print(longestPalindrome(s))
+            # Handle even palindromes (r = i + 1 is the only difference)
+            l, r = i, i + 1
+            
+            while ((l >= 0) and (r < n) and (s[l] == s[r])):
+                length = r - l + 1
+                if length > maxLength:
+                    maxLength = length
+                    start = l
+                    
+                l -= 1
+                r += 1
+                
+        return s[start: start + maxLength]
+                    
