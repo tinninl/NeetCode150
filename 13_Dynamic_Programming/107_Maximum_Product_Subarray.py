@@ -5,24 +5,26 @@ class Solution:
         if not nums:
             return 0
         
-        maxProd = currMax = currMin = nums[0]
+        # Base cases
+        maxProd = nums[0]
+        minProd = nums[0]
+        res = nums[0]
         
         for i in range(1, len(nums)):
             
-            n = nums[i]
+            # Upon reaching a neg, swap max and mid prod
+            if nums[i] < 0:
+                temp = maxProd
+                maxProd = minProd
+                minProd = temp
+                
+            maxProd = max(nums[i], maxProd * nums[i])
+            minProd = min(nums[i], minProd * nums[i])
             
-            if n == 0:
-                currMin = 1, 1
-                continue
-            
-            temp = currMin * n
-            
-            currMax = max(n * currMax, n * currMin, n)
-            currMin = min(n * currMax, n * currMin, n)
-            
-            maxProduct = max(maxProduct, currMax, currMin)
-            
-        return maxProduct
+            res = max(res, maxProd)
+        
+        return res
+        
     
 """
 Notes
