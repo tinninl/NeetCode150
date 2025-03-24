@@ -30,12 +30,24 @@ Constraints:
 s and wordDict[i] consist of only lowercase English letters.
 """
 
+"""
+Step One: What is the subproblem?
+
+Step Two: What is the state?
+dp[i] = True means s[0:i] can be formed from the dict of words
+
+Step Three: What is the recurrence relation?
+dp[i] = True if dp[j] is True AND str[j:i] is also in the word dict (j < i)
+
+Step Four: Base case(s)
+dp[0] = True, an empty string
+"""
 class Solution:
+    
     def wordBreak(self, s: str, wordDict: list[str]) -> bool:
         
         wordSet = set(wordDict)      
         n = len(s)
-        
         
         dp = [False] * (n + 1) # where dp[i] = a string of length i works
         
@@ -51,8 +63,4 @@ class Solution:
         
         return dp[n]
 
-"""
-For example: cardogcat 
-dp = [f,f,t,f,f,t,f,f,t]
-"""
-    
+   

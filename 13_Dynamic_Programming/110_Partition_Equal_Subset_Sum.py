@@ -22,20 +22,26 @@ Constraints:
 1 <= nums[i] <= 100
 """
 
+"""
+Step One: What is the subproblem?
+We just need to find one subset that equals half the sum of nums
+
+Step Two: What is the state?
+"""
 class Solution:
     
     def canPartition(self, nums: list[int]) -> bool:
         
         s = sum(nums)
-
+        
         if s % 2 == 1:
             return False
         
-        target = s / 2
+        target = s // 2
         
         n = len(nums)
        
-        dp = [False] * (n + 1)
+        dp = [False] * (target + 1)
         dp[0] = True
                     
         for num in nums:
