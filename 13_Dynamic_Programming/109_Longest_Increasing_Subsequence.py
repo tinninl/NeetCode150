@@ -27,30 +27,55 @@ Constraints:
 Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
 """
 
+"""
+Step One: What is the subproblem?
+"""
 class Solution:
-    
-    """
-    Brute Force Solution: Generate every subsequence, 
-    check if every single one is increasing, record length
-    O(n^2)
-    """
+
     def lengthOfLIS(self, nums: list[int]) -> int:
         
         n = len(nums)
 
         # Base case: The LIS = 1
-        LIS = [1] * n
+        dp = [1] * n
         
-        for i in range(1, n):
+        for end in range(1, n):
             
             # Consider all subproblems
-            for j in range(i):
+            for start in range(end):
                 
                 # Only consider subproblems where the prev element is less than curr element
-                if nums[j] < nums[i]:
+                if nums[start] < nums[end]:
                     
                     # Update LIS
-                    LIS[i] = max(LIS[i], LIS[j] + 1)
+                    dp[end] = max(dp[end], dp[start] + 1)
                            
-        return max(LIS)
+        return max(dp)
+
+    def lengthOfLIS(self, nums: list[int]) -> int:
+        res= 1
+        n = len(nums)
         
+        memo = [-1] * n
+        memo[0] = 1
+        
+        def dfs(i):
+            
+            if i == 0:
+                return 1
+            
+            if memo[i] != -1:
+                return memo[i]
+            maxLength = 1
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    maxLength = max(maxLength, 1 + dfs(j))
+            
+            memo[i] = maxLength 
+            return maxLength
+
+        for i in range(n):
+            res = max(res, dfs(i))
+        return res
+            
+            
