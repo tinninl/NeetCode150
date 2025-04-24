@@ -29,6 +29,20 @@ Constraints:
 1 <= m, n <= 100
 """
 
+"""
+Step One: What is the subproblem?
+The num of paths to reach a cell depends on the cells above and to the left of it
+
+Step Two: What is the state?
+Let dp[i][j] = the num of paths it takes from i,j to m-1,n-1
+
+Step Three: What is the recurrence relation?
+dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+
+Step Four: Base Case(s):
+dp[m-1][n-1] = 0
+The cells on the bottom row and rightmost col have only 1 path to the end
+"""
 class Solution:
     
     def uniquePaths(self, m: int, n: int) -> int:
@@ -51,6 +65,27 @@ class Solution:
                 
         return matrix[0][0]
     
+    def uniquePaths(self, m: int, n: int) -> int:
+        
+        ROWS = m
+        COLS = n
+        memo = {}
+        
+        def dfs(r, c):
+            
+            # Check bounds
+            if (r == ROWS - 1) or (c == COLS - 1):
+                return 1
+            
+            # Return cached result
+            if (r, c) in memo:
+                return memo[(r, c)]
+            
+            memo[(r, c)] = dfs(r + 1, c) + dfs(r, c + 1)
+            
+            return memo[(r, c)]
+
+        return dfs(0, 0)
 """
 The trick is to realize that the bottom row and rightmost col cells have only one path
 The other cells are the sums of the right and bottom adj cells
