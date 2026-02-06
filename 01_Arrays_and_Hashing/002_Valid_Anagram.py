@@ -1,18 +1,28 @@
-def isAnagram(self, s: str, t: str) -> bool:   
-        
-    if len(s) != len(t):       
-        return False
+# Create two arrays to track the frequencies of characters in each string.
+# If the two arrays are equal, they are anagrams.
+
+class Solution:
     
-    count = [0] * 26
-    
-    for i in range(len(s)):
+    def isAnagram(self, s: str, t: str) -> bool:   
         
-        count[ord(s[i]) - ord('a')] += 1
-        count[ord(t[i]) - ord('a')] -= 1
-        
-    for freq in count:
-        
-        if freq != 0:           
+        # Check equal lengths
+        if len(s) != len(t): 
             return False
-          
-    return True
+        
+        # Two arrays, to track the letters and their frequencies in each string
+        countS = [0] * 26 
+        countT = [0] * 26
+        
+        # Fill the arrays
+        for i in range(len(s)):
+            
+            countS[ord(s[i]) - ord('a')] += 1 
+            countT[ord(t[i]) - ord('a')] += 1
+        
+        # Check that both arrays are the same
+        for i in range(len(countS)):
+            
+            if countS[i] != countT[i]:
+                return False
+    
+        return True
